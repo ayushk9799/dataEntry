@@ -8,14 +8,10 @@ import { OutlinedInput, InputAdornment } from "@mui/material";
 const Pricing = () => {
   const { formData } = useSelector((state) => state.form);
   const [iprice, setIprice] = useState(
-    formData?.iprice || {
-      reels: { price: 0 },
-      story: { price: 0 },
-      photo: { price: 0 },
-    }
+    formData?.iprice
   ); // {video : 123, photo : 3232}
   const [yprice, setYprice] = useState(
-    formData?.yprice || { shorts: { price: 0 }, video: { price: 0 } }
+    formData?.yprice 
   );
   const dispatch = useDispatch();
 
@@ -66,14 +62,14 @@ const Pricing = () => {
               }
               style={{ width: "150px", height: "30px" }}
               value={
-                Array.isArray(iprice.story?.price)
-                  ? iprice.story.price[0]
-                  : iprice.story.price
+                Array.isArray(iprice?.story?.price)
+                  ? iprice?.story?.price[0]
+                  : iprice?.story?.price
               }
               onChange={(e) =>
                 setIprice({
                   ...iprice,
-                  ...{ story: { price: Number(e.target.value) } },
+                  ...{ story: { price: e.target.value } },
                 })
               }
               type="number"
@@ -89,14 +85,14 @@ const Pricing = () => {
               }
               style={{ width: "150px", height: "30px" }}
               value={
-                Array.isArray(iprice.photo?.price)
-                  ? iprice.photo.price[0]
-                  : iprice.photo.price
+                Array.isArray(iprice?.photo?.price)
+                  ? iprice?.photo?.price[0]
+                  : iprice?.photo?.price
               }
               onChange={(e) =>
                 setIprice({
                   ...iprice,
-                  ...{ photo: { price: Number(e.target.value) } },
+                  ...{ photo: { price: e.target.value } },
                 })
               }
               type="number"
@@ -104,18 +100,17 @@ const Pricing = () => {
           </div>
           <div className="inpute-items">
             <p>Reels : </p>
-            {/* <input  placeholder='Price(INR)' value={iprice.reels?.price} onChange={(e) => setIprice({...iprice, ...{reels :{price: e.target.value} }})} type='number'  /> */}
             <OutlinedInput
               placeholder="Amount"
               startAdornment={
                 <InputAdornment position="start">$</InputAdornment>
               }
               style={{ width: "150px", height: "30px" }}
-              value={iprice.reels?.price}
+              value={iprice?.reels?.price}
               onChange={(e) =>
                 setIprice({
                   ...iprice,
-                  ...{ reels: { price: Number(e.target.value) } },
+                  ...{ reels: { price:e.target.value } },
                 })
               }
               type="number"
@@ -147,11 +142,11 @@ const Pricing = () => {
                 <InputAdornment position="start">$</InputAdornment>
               }
               style={{ width: "150px", height: "30px" }}
-              value={yprice.shorts?.price}
+              value={yprice?.shorts?.price}
               onChange={(e) =>
                 setYprice({
                   ...yprice,
-                  ...{ shorts: { price: Number(e.target.value) } },
+                  ...{ shorts: { price: e.target.value } },
                 })
               }
               type="number"
@@ -166,11 +161,11 @@ const Pricing = () => {
                 <InputAdornment position="start">$</InputAdornment>
               }
               style={{ width: "150px", height: "30px" }}
-              value={yprice.video?.price}
+              value={yprice?.video?.price}
               onChange={(e) =>
                 setYprice({
                   ...yprice,
-                  ...{ video: { price: Number(e.target.value) } },
+                  ...{ video: { price: e.target.value } },
                 })
               }
               type="number"

@@ -60,6 +60,7 @@ export const test=async(url)=> {
 });
 console.log(result)
     result.profilePic=await downloadImage(result.profilePic);
+    await browser.close();
    return result;
    
 }
